@@ -21,7 +21,7 @@ const useFetch = (url) => {
           setError(err.message);
           setPending(false);
         });
-    }, 1000);
+    }, 200);
   }, []);
   return { data, pending, error };
 };
