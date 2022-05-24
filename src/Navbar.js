@@ -5,7 +5,7 @@ const Navbar = () => {
       <h1>The Dojo Blog</h1>
       <div className="links">
         <Link to="home">Home</Link>
-        <Link to="about">about</Link>
+        <Link to="create">create</Link>
       </div>
     </nav>
   );

@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 import Home from "./Home";
-import About from "./About";
+import Create from "./Create";
 import { Outlet } from "react-router-dom";
 
 function App() {

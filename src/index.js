@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import Home from "./Home";
-import About from "./About";
+import Create from "./Create";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Blogdetails from "./Blogdetails";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,7 +13,8 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="home" element={<Home />} />
-          <Route path="about" element={<About />} />
+          <Route path="create" element={<Create />} />
+          <Route path="/blogs/:id" element={<Blogdetails />} />
         </Route>
       </Routes>
     </BrowserRouter>

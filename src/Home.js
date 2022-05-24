@@ -7,9 +7,7 @@ const Home = () => {
     data: blogs,
     pending,
     error,
-  } = useFetch(
-    "https://raw.githubusercontent.com/iamshaunjp/Complete-React-Tutorial/lesson-19/dojo-blog/data/db.json"
-  );
+  } = useFetch("http://localhost:8000/blogs");
   //   const [name, setName] = useState("mario");
 
   //   const handleDelete = (id) => {
@@ -22,7 +20,7 @@ const Home = () => {
       {error && <div> {error} </div>}
       {pending && <div>loading..</div>}
       {blogs && (
-        <Bloglist blogs={blogs.blogs} title="All blogs" /> //handleDelete={handleDelete} />
+        <Bloglist blogs={blogs} title="All blogs" /> //handleDelete={handleDelete} />
       )}
     </div>
   );
