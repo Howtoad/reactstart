@@ -10,12 +10,22 @@ const Blogdetails = () => {
   } = useFetch(`http://localhost:8000/blogs/${id}`);
   const navigate = useNavigate();
   const handleClick = () => {
-    fetch("http://localhost:8000/blogs/" + blog.id, {
-      method: "DELETE",
+    if (window.confirm("You sure?")) {
+      fetch("http://localhost:8000/blogs/" + blog.id, {
+        method: "DELETE",
+      }).then(() => {
+        navigate("/home");
+      });
+    }
+  };
+  const handleEdit = () => {
+    fetch("http://localhost:8000/blogs" + blog.id, {
+      method: "PATCH",
     }).then(() => {
-      navigate("/home");
+      navigate("/edit/" + blog.id);
     });
   };
+
   return (
     <div className="blog-details">
       {pending && <div>Loading... </div>}
@@ -23,9 +33,10 @@ const Blogdetails = () => {
       {blog && (
         <article>
           <h2>{blog.title}</h2>
-          <p>Written by {blog.autor}</p>
+          <p>Written by {blog.author}</p>
           <div>{blog.body}</div>
           <button onClick={handleClick}>Delete</button>
+          <button onClick={handleEdit}>Edit</button>
         </article>
       )}
     </div>
