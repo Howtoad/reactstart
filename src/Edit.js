@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useFetch from "./useFetch";
 const Edit = () => {
+  const { id } = useParams();
+  const { data: blog } = useFetch(`http://localhost:8000/blogs/${id}`);
+  console.log(blog);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("yoshi");
@@ -10,8 +14,8 @@ const Edit = () => {
     e.preventDefault();
     const blog = { title, body, author };
     setPending(true);
-    fetch("http://localhost:8000/blogs", {
-      method: "POST",
+    fetch("http://localhost:8000/blogs/" + { id }, {
+      method: "PATCH",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(blog),
     }).then(() => {
@@ -25,19 +29,29 @@ const Edit = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Blog Title:
-          <input type="text" required />
+          <input
+            type="text"
+            required
+            value={blog.title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </label>
 
         <label>
           Blog body:
-          <textarea required></textarea>
+          <textarea
+            required
+            value={blog.body}
+            onChange={(e) => setBody(e.target.value)}
+          ></textarea>
         </label>
 
         <label>Blog author:</label>
-        <select>
+        <select value={blog.author} onChange={(e) => setAuthor(e.value.target)}>
           <option value="mario">Mario</option>
           <option value="yoshi">Yoshi</option>
         </select>
+
         {!pending && <button type="submit">Edit the blog</button>}
         {pending && <button disabled>Editing blog..</button>}
       </form>

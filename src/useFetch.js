@@ -4,24 +4,22 @@ const useFetch = (url) => {
   const [pending, setPending] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    setTimeout(() => {
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw Error("things are not okay");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setError(null);
-          setData(data);
-          setPending(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setPending(false);
-        });
-    }, 200);
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error("things are not okay");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setError(null);
+        setData(data);
+        setPending(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setPending(false);
+      });
   }, []);
   return { data, pending, error };
 };
