@@ -13,10 +13,16 @@
       "id": 2
     },
     {
-      "title": "my newest biggest blog",
-      "body": "super big blog by yoshi",
+      "title": "its working",
+      "body": "tythomas",
       "author": "yoshi",
       "id": 3
+    },
+    {
+      "title": "newtest123asdasdasdasd",
+      "body": "asdasd123",
+      "author": "mario",
+      "id": 4
     }
   ]
 }
